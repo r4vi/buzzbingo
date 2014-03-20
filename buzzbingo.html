@@ -1,0 +1,61 @@
+<head>
+  <title>buzzbingo</title>
+  <style>
+    .bzl {
+      padding: 30px;
+    }
+    .bz {
+      display: inline-block;
+      border: 1px solid black;
+      padding: 8px;
+      margin: 5px;
+      line-height: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>CS Leaders Buzzword Bingo</h1>
+  {{> buzzwordList}}
+  <hr>
+  {{> newbz }}
+  <br><br>
+  <br><br>
+  <hr>
+  <h2>Chat</h2>
+  {{> newchat }}
+  {{> chats}}
+</body>
+
+<template name="chats">
+  {{#each chat}}
+    <div class="chatmsg">>> {{msg}}</div>
+  {{/each}}
+</template>
+
+<template name="newchat">
+  <form>
+    <label><input name="newmsg" type="text"></input></label>
+    <input type="submit"></input>
+  </form>
+</template>
+
+<template name="buzzwordList">
+  <div class="bzl">
+    {{#each buzzwords}}
+    <div class="bz">
+      {{word}}: {{hits}}
+    </div>
+    {{/each}}
+  </div>
+</template>
+
+
+<template name="newbz">
+  <div class="bzn">
+    <form>
+    <label>Add New<input name="newbz" type="text"></input></label>
+    <input type="submit"></input>
+    </form>
+  </div>
+</template>
