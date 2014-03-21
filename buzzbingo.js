@@ -10,7 +10,7 @@ if (Meteor.isClient) {
   Template.buzzwordList.events({
       'click': function() {
           this.hits = this.hits += 1;
-          Buzzwords.update({_id: this._id}, {$set: {hits: this.hits}})
+          Buzzwords.update({_id: this._id}, {$set: {hits: this.hits}});
           console.log(this);
       }
   });
@@ -18,7 +18,7 @@ if (Meteor.isClient) {
 Template.newbz.events({
   'submit form': function(e){
       var n = {word: e.currentTarget.querySelector('input').value,
-               hits: 0}
+               hits: 0};
       Buzzwords.insert(n);
       e.currentTarget.querySelector('input').value = '';
       e.preventDefault();
@@ -29,7 +29,7 @@ Template.chats.chat = Chat.find({},{sort: {when: -1}});
 Template.newchat.events({
   'submit form': function(e){
       var n = {msg: e.currentTarget.querySelector('input').value,
-               when: new Date().getTime()}
+               when: new Date().getTime()};
       
       Chat.insert(n);
       e.currentTarget.querySelector('input').value = '';
@@ -42,23 +42,11 @@ Template.newchat.events({
 if (Meteor.isServer) {
   Meteor.publish(
       "all-bw",
-      function ()
-      {
-          return Buzzwords.find(
-              {},
-              {sort: {hits:-1}}
-          )
-      }
+      function () {return Buzzwords.find({}, {sort: {hits:-1}});}
   );
   Meteor.publish(
       "all-chat",
-      function ()
-      {
-          return Chat.find(
-              {},
-              {sort: {when: 1}}
-          )
-      }
+      function () {return Chat.find({}, {sort: {when: 1}});}
   );
     
   Meteor.startup(function () {
